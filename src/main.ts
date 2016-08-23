@@ -1,4 +1,8 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
-import { App } from './app';
+import { HTTP_PROVIDERS } from '@angular/http';
+import { App, providers } from './app';
 
-bootstrap(App);
+bootstrap(App, [
+  ...HTTP_PROVIDERS,
+  ...providers
+]);

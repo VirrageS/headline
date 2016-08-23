@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Headline } from '../ui';
+import { HeadlineService } from '../services'
 
 @Component({
   selector: 'headlines-container',
@@ -24,8 +25,19 @@ import { Headline } from '../ui';
   `
 })
 export class Headlines {
+  max_items = 10;
   headlines = [
-    {title: "Github"},
-    {title: "Reddit"}
+    {title: "Github", path: "/github", data: []},
+    {title: "Reddit", path: "/reddit", data: []}
   ];
+
+  constructor(private headlineService: HeadlineService) {
+    this.headlines.map(
+      headline => (
+        this.headlineService.getHeadline(headline.path)
+          .subscribe(res => headline.data = res.slice(0, this.max_items))
+      )
+    )
+  }
+
 }
