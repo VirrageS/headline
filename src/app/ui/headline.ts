@@ -10,8 +10,9 @@ import {
   styles: [`
     .headline {
       display: block;
-      width: 400px;
-      height: 400px;
+      max-width: 500px;
+      min-height: 400px;
+      margin: 20px 0px;
     }
     .header {
       display: flex;
