@@ -17,11 +17,11 @@ import { HeadlineService } from '../services'
 
     .headline {
       display: block;
-      width: 500px;
+      width: 450px;
       min-height: 400px;
       margin: 20px auto;
     }
-    @media (max-width: 500px) {
+    @media (max-width: 450px) {
       .headline {
         width: 100%;
       }
@@ -39,10 +39,11 @@ import { HeadlineService } from '../services'
   `
 })
 export class Headlines {
-  max_items = 10
+  maxItemsLimit = 10
   headlines = [
     {title: "Github", path: "/github", data: [], loading: true},
-    {title: "Reddit", path: "/reddit", data: [], loading: true}
+    {title: "Reddit", path: "/reddit", data: [], loading: true},
+    {title: "HackerRank", path: "/hackerrank", data: [], loading: true}
   ]
 
   constructor(private headlineService: HeadlineService) {
@@ -56,7 +57,7 @@ export class Headlines {
   private fetchHeadline(headline) {
     this.headlineService.getHeadline(headline.path)
       .subscribe(res => {
-        headline.data = res.slice(0, this.max_items)
+        headline.data = res.slice(0, this.maxItemsLimit)
 
         if (headline.data.length == 0) {
           setTimeout(this.fetchHeadline(headline), 1000)
