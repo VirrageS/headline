@@ -9,8 +9,7 @@ import 'rxjs/add/observable/throw';
 export class ApiService {
   headers: Headers = new Headers({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-    // 'Accept': 'application/json'
+    'Accept': 'application/json'
   });
 
   api_url: string = 'http://localhost:8080';
@@ -33,8 +32,8 @@ export class ApiService {
 
   get(path: string): Observable<any> {
     return this.http.get(`${this.api_url}${path}`, { headers: this.headers, body: {} })
-      // .map(this.checkForError)
-      // .catch(err => Observable.throw(err))
+      .map(this.checkForError)
+      .catch(err => Observable.throw(err))
       .map(this.getJson)
   }
 

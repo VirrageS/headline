@@ -8,12 +8,6 @@ import {
 @Component({
   selector: 'headline',
   styles: [`
-    .headline {
-      display: block;
-      max-width: 500px;
-      min-height: 400px;
-      margin: 20px 0px;
-    }
     .header {
       display: flex;
       align-items: center;
@@ -75,21 +69,21 @@ import {
     }
   `],
   template: `
-    <div class="headline">
-      <div class="header">
-        <div class="header__title">{{ headline.title }}</div>
+    <div class="header">
+      <div class="header__title">{{ headline.title }}</div>
+    </div>
+    <div class="items">
+      <div *ngIf="headline.loading">Loading...</div>
+      <div
+        *ngFor="let item of headline.data"
+        class="item"
+      >
+        <a href="{{ item.url }}" class="item__info" target="_blank">
+          <div class="item__info__title">{{ item.title }}</div>
+          <div class="item__info__description">{{ item.description }}</div>
+        </a>
+        <span class="item__badge">{{ item.points }}</span>
       </div>
-      <div class="items">
-        <div
-          *ngFor="let item of headline.data"
-          class="item"
-        >
-          <a href="{{ item.url }}" class="item__info">
-            <div class="item__info__title">{{ item.title }}</div>
-            <div class="item__info__description">{{ item.description }}</div>
-          </a>
-          <span class="item__badge">{{ item.points }}</span>
-        </div>
     </div>
   `
 })
