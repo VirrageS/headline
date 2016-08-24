@@ -12,4 +12,4 @@ import { Main } from './containers';
     </div>
   `
 })
-export class App {}
+export class AppComponent {}
