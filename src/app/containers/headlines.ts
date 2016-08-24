@@ -43,7 +43,7 @@ export class Headlines {
   headlines = [
     {title: "Github", path: "/github", data: [], loading: true},
     {title: "Reddit", path: "/reddit", data: [], loading: true},
-    {title: "HackerRank", path: "/hackerrank", data: [], loading: true}
+    {title: "Hacker News", path: "/hackernews", data: [], loading: true}
   ]
 
   constructor(private headlineService: HeadlineService) {
