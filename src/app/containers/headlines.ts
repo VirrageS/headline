@@ -39,14 +39,15 @@ import { HeadlineService } from '../services'
   `
 })
 export class Headlines {
-  maxItemsLimit = 10
   headlines = [
     {title: "Github", path: "/github", data: [], loading: true},
     {title: "Reddit", path: "/reddit", data: [], loading: true},
-    {title: "Hacker News", path: "/hackernews", data: [], loading: true}
+    {title: "Hacker News", path: "/hackernews", data: [], loading: true},
+    {title: "ProductHunt", path: "/producthunt", data: [], loading: true}
   ]
 
   constructor(private headlineService: HeadlineService) {
+
     this.fetchHeadlines()
   }
 
@@ -57,10 +58,10 @@ export class Headlines {
   private fetchHeadline(headline) {
     this.headlineService.getHeadline(headline.path)
       .subscribe(res => {
-        headline.data = res.slice(0, this.maxItemsLimit)
+        headline.data = res
 
         if (headline.data.length == 0) {
-          setTimeout(this.fetchHeadline(headline), 1000)
+          setTimeout(this.fetchHeadline(headline), 500)
         } else {
           headline.loading = false
         }

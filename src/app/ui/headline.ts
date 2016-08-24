@@ -91,5 +91,5 @@ import {
   `
 })
 export class Headline {
-  @Input() headline = {};
+  @Input() headline = {loading: true};
 }
