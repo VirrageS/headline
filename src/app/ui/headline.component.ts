@@ -5,8 +5,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { Headline } from '../headline';
-import { HeadlineService } from '../services';
+import { Headline, HeadlineService } from '../shared';
 
 @Component({
   selector: 'headline',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeadlineComponent } from '../ui';
-import { Headline } from '../headline';
+import { Headline } from '../shared';
 
 @Component({
   selector: 'headlines-container',
