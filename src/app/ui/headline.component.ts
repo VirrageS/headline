@@ -10,88 +10,7 @@ import { HeadlineService } from '../services';
 
 @Component({
   selector: 'headline',
-  styles: ['node_modules/font-awesome/css/font-awesome.css',
-  `
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 55px;
-      border-bottom: 2px solid rgba(0, 0, 0, .32);
-    }
-    .header__title {
-      font-family: 'Raleway', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      // text-transform: uppercase;
-      color: #ff5252;
-    }
-
-    .items {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100%;
-      min-height: 100px;
-    }
-
-    .state__info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 100;
-    }
-
-    .item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      padding: 5px 0px;
-      min-height: 50px;
-      font-weight: 200;
-
-      border-bottom: 1px solid rgba(0, 0, 0, .18);
-    }
-
-    .item:hover {
-      background-color: rgba(0, 0, 0, .04);
-    }
-
-    .item__info {
-      font-size: 0.95rem;
-      color: rgba(0, 0, 0, 0.92);
-      text-decoration: none !important;
-      margin-right: 10px;
-      width: 100%;
-    }
-    .item__info__title {
-      font-weight: 400;
-      // color: rgb(30, 158, 231);
-    }
-    .item__info__description {
-      font-size: 0.81em;
-      padding: 5px 0px;
-    }
-
-    .item__badge {
-      display: block;
-      margin-left: auto;
-      font-size: 0.8rem;
-      font-weight: 600;
-      background-color: #ff5252;
-      color: #ffffff;
-      border-radius: 10px;
-      min-width: -webkit-min-content;
-      min-width: auto;
-      padding: 0px 8px;
-      height: 20px;
-      line-height: 20px;
-      text-align: center;
-    }
-  `],
+  styleUrls: ['./app/ui/headline.component.css'],
   template: `
     <div class="header">
       <div class="header__title">{{ headline.title }}</div>
@@ -108,8 +27,11 @@ import { HeadlineService } from '../services';
         class="state__info"
       >
         <div>Could not load any data :C</div>
-        <div (click)=refresh()>Refresh</div>
+        <div (click)=refresh()>
+          <strong>Refresh</strong>
+        </div>
       </div>
+
       <div
         *ngFor="let item of headline.data"
         class="item"
