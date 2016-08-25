@@ -69,7 +69,7 @@ export class Headlines implements OnInit {
         headline.data = res
 
         if (headline.data.length == 0) {
-          setTimeout(this.fetchHeadline(headline, retry - 1), this.retryTimeout)
+          setTimeout(() => this.fetchHeadline(headline, retry - 1), this.retryTimeout)
         } else {
           headline.loading = false
         }
