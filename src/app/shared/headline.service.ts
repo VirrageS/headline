@@ -3,7 +3,6 @@ import { ApiService } from './api.service';
 
 @Injectable()
 export class HeadlineService {
-
   constructor(private apiService: ApiService) {}
 
   getHeadline(path: string) {

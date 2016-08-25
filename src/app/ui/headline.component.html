@@ -1,0 +1,40 @@
+<div class="header">
+  <div class="header__title">{{ headline.title }}</div>
+  <i
+    *ngIf="!headline.loading && headline.data.length > 0"
+    (click)=_refresh()
+    class="material-icons header__refresh"
+  >
+    cached
+  </i>
+</div>
+<div class="items">
+  <div
+    *ngIf="headline.loading"
+    class="state__info"
+  >
+    <span>Loading...</span>
+  </div>
+  <div
+    *ngIf="!headline.loading && headline.data.length == 0"
+    class="state__info"
+  >
+    <div>Could not load any data :C</div>
+    <div (click)=_refresh()>
+      <i class="material-icons refresh">cached</i>
+    </div>
+  </div>
+
+  <div *ngIf="!headline.loading">
+    <div
+      *ngFor="let item of headline.data"
+      class="item"
+    >
+      <a href="{{ item.url }}" class="item__info" target="_blank">
+        <div class="item__info__title">{{ item.title }}</div>
+        <div *ngIf="item.description" class="item__info__description">{{ item.description }}</div>
+      </a>
+      <span class="item__badge">{{ item.points }}</span>
+    </div>
+  </div>
+</div>

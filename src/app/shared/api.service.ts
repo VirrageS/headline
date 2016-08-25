@@ -11,16 +11,40 @@ export class ApiService {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   });
+  apiUrl: string = 'http://localhost:8080';
 
-  api_url: string = 'http://localhost:8080';
+  constructor(private _http: Http) {}
 
-  constructor(private http: Http) {}
+  get(path: string): Observable<any> {
+    return this._http.get(`${this.apiUrl}${path}`, { headers: this.headers, body: {} })
+      .map(this._checkForError)
+      .catch(err => Observable.throw(err))
+      .map(this._getJson)
+  }
 
-  private getJson(response: Response) {
+  post(path: string, body): Observable<any> {
+    return this._http.post(
+        `${this.apiUrl}${path}`,
+        JSON.stringify(body),
+        { headers: this.headers }
+      )
+      .map(this._checkForError)
+      .catch(err => Observable.throw(err))
+      .map(this._getJson)
+  }
+
+  delete(path: string): Observable<any> {
+    return this._http.delete(`${this.apiUrl}${path}`, { headers: this.headers })
+      .map(this._checkForError)
+      .catch(err => Observable.throw(err))
+      .map(this._getJson)
+  }
+
+  private _getJson(response: Response) {
     return response.json();
   }
 
-  private checkForError(response: Response): Response {
+  private _checkForError(response: Response): Response {
     if (response.status >= 200 && response.status < 300) {
       return response;
     } else {
@@ -28,30 +52,5 @@ export class ApiService {
       error['response'] = response;
       throw error;
     }
-  }
-
-  get(path: string): Observable<any> {
-    return this.http.get(`${this.api_url}${path}`, { headers: this.headers, body: {} })
-      .map(this.checkForError)
-      .catch(err => Observable.throw(err))
-      .map(this.getJson)
-  }
-
-  post(path: string, body): Observable<any> {
-    return this.http.post(
-        `${this.api_url}${path}`,
-        JSON.stringify(body),
-        { headers: this.headers }
-      )
-      .map(this.checkForError)
-      .catch(err => Observable.throw(err))
-      .map(this.getJson)
-  }
-
-  delete(path: string): Observable<any> {
-    return this.http.delete(`${this.api_url}${path}`, { headers: this.headers })
-      .map(this.checkForError)
-      .catch(err => Observable.throw(err))
-      .map(this.getJson)
   }
 }
