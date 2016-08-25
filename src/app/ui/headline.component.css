@@ -1,3 +1,13 @@
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+
 .header {
   position: relative;
   display: flex;
@@ -18,6 +28,9 @@
   top: 15px;
   color: rgba(0, 0, 0, .54);
   cursor: pointer;
+}
+.header__refresh:hover {
+  animation: rotating 2s linear infinite;
 }
 
 .items {
@@ -41,10 +54,10 @@
   font-size: 3rem !important;
   color: rgba(0, 0, 0, .54);
   cursor: pointer;
-  transition: all .3s;
+  transition: color .3s;
 }
 .state__info .refresh:hover {
-  transform: rotate(-180deg);
+  animation: rotating 2s linear infinite;
   color: #000000;
 }
 
