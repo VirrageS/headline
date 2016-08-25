@@ -43,6 +43,6 @@ export class HeadlinesComponent {
     new Headline("Github", "/github"),
     new Headline("Reddit", "/reddit"),
     new Headline("Hacker News", "/hackernews"),
-    new Headline("ProductHunt", "/producthunt"),
+    new Headline("Product Hunt", "/producthunt"),
   ]
 }
