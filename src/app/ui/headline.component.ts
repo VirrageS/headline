@@ -10,10 +10,17 @@ import { HeadlineService } from '../services';
 
 @Component({
   selector: 'headline',
-  styleUrls: ['./app/ui/headline.component.css'],
+  styleUrls: ['app/ui/headline.component.css'],
   template: `
     <div class="header">
       <div class="header__title">{{ headline.title }}</div>
+      <i
+        *ngIf="!headline.loading && headline.data.length > 0"
+        (click)=refresh()
+        class="material-icons header__refresh"
+      >
+        cached
+      </i>
     </div>
     <div class="items">
       <div
@@ -28,7 +35,7 @@ import { HeadlineService } from '../services';
       >
         <div>Could not load any data :C</div>
         <div (click)=refresh()>
-          <strong>Refresh</strong>
+          <i class="material-icons refresh">cached</i>
         </div>
       </div>
 
