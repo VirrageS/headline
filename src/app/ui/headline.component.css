@@ -7,6 +7,18 @@
   }
 }
 
+@keyframes flash {
+  from {
+    background-color: #ff5252;
+    border-radius: 10px;
+  }
+  to {
+    background-color: inherit;
+    color: inherit;
+    /*border-radius: 0px;*/
+  }
+}
+
 
 .header {
   position: relative;
@@ -74,9 +86,11 @@
 
   border-bottom: 1px solid rgba(0, 0, 0, .18);
 }
-
 .item:hover, .item:active {
   background-color: rgba(0, 0, 0, .04);
+}
+.item.flash {
+  animation: flash 1s linear;
 }
 
 .item__info {

@@ -2,7 +2,7 @@
   <div class="header__title">{{ headline.title }}</div>
   <i
     *ngIf="!headline.loading && headline.data.length > 0"
-    (click)=_refresh()
+    (click)=_refresh(true)
     class="material-icons header__refresh"
   >
     cached
@@ -29,6 +29,7 @@
     <div
       *ngFor="let item of headline.data"
       class="item"
+      [ngClass]="{'flash': item.isNew}"
     >
       <a href="{{ item.url }}" class="item__info" target="_blank">
         <div class="item__info__title">{{ item.title }}</div>
