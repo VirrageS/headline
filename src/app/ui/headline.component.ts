@@ -24,30 +24,22 @@ export class HeadlineComponent implements OnInit {
 
   private _fetch(flash: boolean = false) {
     this._headlineService.getHeadline(this.headline.path)
-      .subscribe(res => {
-        let previous = this.headline.data
-        this.headline.data = res
-
+      .subscribe(result => {
+        // check if any item is new. if yes we should mark it
         if (flash) {
-          let newData = []
-          _.each(this.headline.data, (newRow) => {
-            let ok: boolean = false
-            _.each(previous, (oldRow) => {
+          _.each(result, (newRow) => {
+            let found: boolean = false
+            _.each(this.headline.data, (oldRow) => {
               if (oldRow.title == newRow.title) {
-                ok = true;
+                found = true;
               }
             })
 
-            if (!ok) {
-              newData.push(newRow)
-            }
-          })
-
-          _.map(newData, (row) => {
-            row.isNew = true
+            newRow.isNew = !found
           })
         }
 
+        this.headline.data = result
         this.headline.loading = false
       })
   }
