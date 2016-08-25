@@ -24,15 +24,17 @@ import {
     }
 
     .items {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 100%;
-      min-height: 200px;
+      min-height: 100px;
     }
 
     .state__info {
-      min-height: 100% !important;
-      width: 100%;
-      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 100;
       align-self: center;
     }
 

@@ -39,7 +39,8 @@ import { HeadlineService } from '../services'
   `
 })
 export class Headlines implements OnInit {
-  retries = 5 // number of retries of fetching data if nothing was fetched
+  retries = 5  // number of retries of fetching data if nothing was fetched
+  retryTimeout = 1000 // delay between consecutive retries
   headlines = [
     {title: "Github", path: "/github", data: [], loading: true},
     {title: "Reddit", path: "/reddit", data: [], loading: true},
@@ -68,7 +69,7 @@ export class Headlines implements OnInit {
         headline.data = res
 
         if (headline.data.length == 0) {
-          setTimeout(this.fetchHeadline(headline, retry - 1), 500)
+          setTimeout(this.fetchHeadline(headline, retry - 1), this.retryTimeout)
         } else {
           headline.loading = false
         }
