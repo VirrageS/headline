@@ -39,15 +39,17 @@ import { HeadlineService } from '../services';
         </div>
       </div>
 
-      <div
-        *ngFor="let item of headline.data"
-        class="item"
-      >
-        <a href="{{ item.url }}" class="item__info" target="_blank">
-          <div class="item__info__title">{{ item.title }}</div>
-          <div *ngIf="item.description" class="item__info__description">{{ item.description }}</div>
-        </a>
-        <span class="item__badge">{{ item.points }}</span>
+      <div *ngIf="!headline.loading">
+        <div
+          *ngFor="let item of headline.data"
+          class="item"
+        >
+          <a href="{{ item.url }}" class="item__info" target="_blank">
+            <div class="item__info__title">{{ item.title }}</div>
+            <div *ngIf="item.description" class="item__info__description">{{ item.description }}</div>
+          </a>
+          <span class="item__badge">{{ item.points }}</span>
+        </div>
       </div>
     </div>
   `
