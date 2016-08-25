@@ -13,7 +13,10 @@
     *ngIf="headline.loading"
     class="state__info"
   >
-    <span>Loading...</span>
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
   </div>
   <div
     *ngIf="!headline.loading && headline.data.length == 0"

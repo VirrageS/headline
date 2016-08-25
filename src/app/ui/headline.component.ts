@@ -54,6 +54,6 @@ export class HeadlineComponent implements OnInit {
 
   private _refresh(flash: boolean = false) {
     this.headline.loading = true
-    this._fetch()
+    this._fetch(flash)
   }
 }
