@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Headline } from '../ui';
 import { HeadlineService } from '../services'
 
@@ -38,7 +38,8 @@ import { HeadlineService } from '../services'
     </div>
   `
 })
-export class Headlines {
+export class Headlines implements OnInit {
+  retries = 5 // number of retries of fetching data if nothing was fetched
   headlines = [
     {title: "Github", path: "/github", data: [], loading: true},
     {title: "Reddit", path: "/reddit", data: [], loading: true},
@@ -46,22 +47,28 @@ export class Headlines {
     {title: "ProductHunt", path: "/producthunt", data: [], loading: true},
   ]
 
-  constructor(private headlineService: HeadlineService) {
+  constructor(private headlineService: HeadlineService) {}
 
+  ngOnInit() {
     this.fetchHeadlines()
   }
 
   private fetchHeadlines() {
-    this.headlines.map(headline => this.fetchHeadline(headline))
+    this.headlines.map(headline => this.fetchHeadline(headline, this.retries))
   }
 
-  private fetchHeadline(headline) {
+  private fetchHeadline(headline, retry) {
+    if (retry <= 0) {
+      headline.loading = false
+      return
+    }
+
     this.headlineService.getHeadline(headline.path)
       .subscribe(res => {
         headline.data = res
 
         if (headline.data.length == 0) {
-          setTimeout(this.fetchHeadline(headline), 500)
+          setTimeout(this.fetchHeadline(headline, retry - 1), 500)
         } else {
           headline.loading = false
         }

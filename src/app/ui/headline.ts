@@ -13,12 +13,12 @@ import {
       align-items: center;
       justify-content: center;
       height: 55px;
-      width: 100%;
       border-bottom: 2px solid rgba(0, 0, 0, .32);
     }
     .header__title {
-      font-size: 1.3rem;
-      font-weight: 500;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 900;
       // text-transform: uppercase;
       color: #ff5252;
     }
@@ -26,6 +26,14 @@ import {
     .items {
       display: block;
       width: 100%;
+      min-height: 200px;
+    }
+
+    .state__info {
+      min-height: 100% !important;
+      width: 100%;
+      height: 100%;
+      align-self: center;
     }
 
     .item {
@@ -40,11 +48,16 @@ import {
       border-bottom: 1px solid rgba(0, 0, 0, .18);
     }
 
+    .item:hover {
+      background-color: rgba(0, 0, 0, .04);
+    }
+
     .item__info {
       font-size: 0.95rem;
       color: rgba(0, 0, 0, 0.92);
       text-decoration: none !important;
       margin-right: 10px;
+      width: 100%;
     }
     .item__info__title {
       font-weight: 400;
@@ -76,7 +89,8 @@ import {
       <div class="header__title">{{ headline.title }}</div>
     </div>
     <div class="items">
-      <div *ngIf="headline.loading">Loading...</div>
+      <div *ngIf="headline.loading" class="state__info">Loading...</div>
+      <div *ngIf="!headline.loading && headline.data.length == 0" class="state__info">Could not load any data :C</div>
       <div
         *ngFor="let item of headline.data"
         class="item"
