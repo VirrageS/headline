@@ -1,1 +1,1 @@
-export { Headline } from './headline';
+export { HeadlineComponent } from './headline.component';

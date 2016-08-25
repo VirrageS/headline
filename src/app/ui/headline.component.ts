@@ -1,13 +1,17 @@
 import {
   Component,
+  OnInit,
   Input,
   Output,
   EventEmitter
 } from '@angular/core';
+import { Headline } from '../headline';
+import { HeadlineService } from '../services';
 
 @Component({
   selector: 'headline',
-  styles: [`
+  styles: ['node_modules/font-awesome/css/font-awesome.css',
+  `
     .header {
       display: flex;
       align-items: center;
@@ -32,10 +36,12 @@ import {
     }
 
     .state__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       font-family: 'Roboto', sans-serif;
       font-size: 1.2rem;
       font-weight: 100;
-      align-self: center;
     }
 
     .item {
@@ -91,8 +97,19 @@ import {
       <div class="header__title">{{ headline.title }}</div>
     </div>
     <div class="items">
-      <div *ngIf="headline.loading" class="state__info">Loading...</div>
-      <div *ngIf="!headline.loading && headline.data.length == 0" class="state__info">Could not load any data :C</div>
+      <div
+        *ngIf="headline.loading"
+        class="state__info"
+      >
+        <span>Loading...</span>
+      </div>
+      <div
+        *ngIf="!headline.loading && headline.data.length == 0"
+        class="state__info"
+      >
+        <div>Could not load any data :C</div>
+        <div (click)=refresh()>Refresh</div>
+      </div>
       <div
         *ngFor="let item of headline.data"
         class="item"
@@ -106,6 +123,25 @@ import {
     </div>
   `
 })
-export class Headline {
-  @Input() headline = {};
+export class HeadlineComponent implements OnInit {
+  @Input() headline: Headline
+
+  constructor(private headlineService: HeadlineService) {}
+
+  ngOnInit() {
+    this.fetch()
+  }
+
+  private fetch() {
+    this.headlineService.getHeadline(this.headline.path)
+      .subscribe(res => {
+        this.headline.data = res
+        this.headline.loading = false
+      })
+  }
+
+  private refresh() {
+    this.headline.loading = true
+    this.fetch()
+  }
 }
