@@ -8,26 +8,28 @@
     cached
   </i>
 </div>
-<div class="items">
-  <div
-    *ngIf="headline.loading"
-    class="state__info"
-  >
-    <div class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-    </div>
-  </div>
-  <div
-    *ngIf="!headline.loading && headline.data.length == 0"
-    class="state__info"
-  >
-    <div>Could not load any data :C</div>
-    <div (click)=_refresh()>
-      <i class="material-icons refresh">cached</i>
-    </div>
-  </div>
 
+<div
+  *ngIf="headline.loading"
+  class="state__info"
+>
+  <div class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
+
+<div
+  *ngIf="!headline.loading && headline.data.length == 0"
+  class="state__info"
+>
+  <div>Could not load any data :C</div>
+  <div (click)=_refresh()>
+    <i class="material-icons refresh">cached</i>
+  </div>
+</div>
+
+<div class="items">
   <div *ngIf="!headline.loading">
     <div
       *ngFor="let item of headline.data"

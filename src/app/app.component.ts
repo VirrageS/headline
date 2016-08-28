@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Main } from './containers';
 
+import '../../public/css/styles.css';
+
 @Component({
   selector: 'app',
   directives: [

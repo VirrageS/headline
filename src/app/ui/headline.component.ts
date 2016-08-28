@@ -10,8 +10,8 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'headline',
-  styleUrls: ['app/ui/headline.component.css'],
-  templateUrl: 'app/ui/headline.component.html'
+  styleUrls: ['./headline.component.css'],
+  templateUrl: './headline.component.html'
 })
 export class HeadlineComponent implements OnInit {
   @Input() headline: Headline
