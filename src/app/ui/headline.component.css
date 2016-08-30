@@ -97,8 +97,8 @@
   font-size: 0.95rem;
   color: rgba(0, 0, 0, 0.92);
   text-decoration: none !important;
+  overflow: hidden;
   margin-right: 10px;
-  width: 100%;
 }
 
 .item__info__title {
