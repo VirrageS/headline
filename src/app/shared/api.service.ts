@@ -11,7 +11,7 @@ export class ApiService {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   });
-  apiUrl: string = 'http://localhost:8080';
+  apiUrl: string = 'http://0.0.0.0:8080';
 
   constructor(private _http: Http) {}
 
