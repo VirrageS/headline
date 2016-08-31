@@ -7,16 +7,25 @@ import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class ApiService {
+  retry: number = 2000;
+  timeout: number = 5000;
   headers: Headers = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   });
-  apiUrl: string = 'http://0.0.0.0:8080';
+  apiUrl: string;
 
-  constructor(private _http: Http) {}
+  constructor(private _http: Http) {
+    this.apiUrl = 'http://0.0.0.0:8080'
+    if (process.env.ENV === 'production') {
+      this.apiUrl = 'http://api.headline.tooser.xyz'
+    }
+  }
 
   get(path: string): Observable<any> {
     return this._http.get(`${this.apiUrl}${path}`, { headers: this.headers, body: {} })
+      .retryWhen(error => error.delay(this.retry))
+      .timeout(this.timeout, new Error('Delay exceeded'))
       .map(this._checkForError)
       .catch(err => Observable.throw(err))
       .map(this._getJson)
