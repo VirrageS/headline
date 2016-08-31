@@ -26,6 +26,10 @@ export class HeadlineComponent implements OnInit {
     this._headlineService.getHeadline(this.headline.path)
       .subscribe(
         result => {
+          _.each(result, (newRow) => {
+            newRow.onlyTitle = (newRow.description == "")
+          })
+
           // check if any item is new. if yes we should mark it
           if (flash) {
             _.each(result, (newRow) => {

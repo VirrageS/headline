@@ -41,8 +41,8 @@ import { Headline } from '../shared';
 export class HeadlinesComponent {
   headlines: Headline[] = [
     new Headline("Github", "/github"),
+    new Headline("Product Hunt", "/producthunt"),
     new Headline("Reddit", "/reddit"),
     new Headline("Hacker News", "/hackernews"),
-    new Headline("Product Hunt", "/producthunt"),
   ]
 }

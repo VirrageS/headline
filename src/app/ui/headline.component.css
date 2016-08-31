@@ -79,7 +79,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 5px 8px;
+  padding: 6px 8px;
   min-height: 50px;
   font-weight: 200;
   transition: background-color .3s;
@@ -92,6 +92,10 @@
 }
 .item.flash {
   animation: flash 1s linear;
+}
+.item.wide {
+  padding-top: 11px;
+  padding-bottom: 11px;
 }
 
 .item__info {
