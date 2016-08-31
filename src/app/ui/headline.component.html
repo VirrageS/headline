@@ -31,16 +31,18 @@
 
 <div class="items">
   <div *ngIf="!headline.loading">
-    <div
+    <a
       *ngFor="let item of headline.data"
+      href="{{ item.url }}"
       class="item"
       [ngClass]="{'flash': item.isNew}"
+      target="_blank"
     >
-      <a href="{{ item.url }}" class="item__info" target="_blank">
+      <div class="item__info">
         <div class="item__info__title">{{ item.title }}</div>
         <div *ngIf="item.description" class="item__info__description">{{ item.description }}</div>
-      </a>
+      </div>
       <span class="item__badge">{{ item.points }}</span>
-    </div>
+    </a>
   </div>
 </div>

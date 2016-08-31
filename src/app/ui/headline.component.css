@@ -83,6 +83,7 @@
   min-height: 50px;
   font-weight: 200;
   transition: background-color .3s;
+  text-decoration: none;
 
   border-bottom: 1px solid rgba(0, 0, 0, .18);
 }
@@ -96,7 +97,6 @@
 .item__info {
   font-size: 0.95rem;
   color: rgba(0, 0, 0, 0.92);
-  text-decoration: none !important;
   overflow: hidden;
   margin-right: 10px;
 }
