@@ -35,7 +35,7 @@
       *ngFor="let item of headline.data"
       href="{{ item.url }}"
       class="item"
-      [ngClass]="{'flash': item.isNew, 'wide': item.onlyTitle}"
+      [ngClass]="{flash: item.isNew, wide: item.onlyTitle}"
       target="_blank"
     >
       <div class="item__info">

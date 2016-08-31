@@ -27,7 +27,7 @@ export class HeadlineComponent implements OnInit {
       .subscribe(
         result => {
           _.each(result, (newRow) => {
-            newRow.onlyTitle = (newRow.description == "")
+            newRow.onlyTitle = (newRow.description == "") || !newRow.description
           })
 
           // check if any item is new. if yes we should mark it
