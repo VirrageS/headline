@@ -35,7 +35,7 @@ export class HeadlineComponent implements OnInit {
             _.each(result, (newRow) => {
               let found: boolean = false
               _.each(this.headline.data, (oldRow) => {
-                if (oldRow.title == newRow.title) {
+                if (oldRow.title === newRow.title) {
                   found = true;
                 }
               })
