@@ -8,6 +8,7 @@ import { MockBackend } from '@angular/http/testing';
 import { ApiService } from './api.service';
 import { HeadlineService } from './headline.service';
 
+
 describe('HeadlineService', () => {
   let headlineSerivce: HeadlineService;
   let mockbackend: MockBackend;
