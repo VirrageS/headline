@@ -124,4 +124,25 @@ describe('HeadlineComponent', () => {
       expect(element.querySelectorAll('.state__info div')[0].innerHTML).toContain('Could not load any data :C')
     })
   }))
+
+  it('should reload on click when there is no data', async(() => {
+    this.fixture.whenStable().then(() => {
+      items = []
+
+      const element = this.fixture.nativeElement
+      this.fixture.detectChanges()
+
+      expect(element.querySelectorAll('.state__info div').length).toBe(2)
+      expect(element.querySelectorAll('.state__info div')[0].innerHTML).toContain('Could not load any data :C')
+
+      items.push(
+        {title: "Title5", description: "Some description", url: "github.com/someth/ing5", points: 1}
+      )
+      element.querySelector('.refresh').click()
+      this.fixture.detectChanges()
+
+      expect(element.querySelectorAll('a.item').length).toBe(items.length)
+      expect(element.querySelectorAll('a.item.flash').length).toBe(0)
+    })
+  }))
 })
