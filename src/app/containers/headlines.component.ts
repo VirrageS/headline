@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { HeadlineComponent } from '../ui';
 import { Headline } from '../shared';
 
 @Component({
   selector: 'headlines-container',
-  directives: [
-    HeadlineComponent
-  ],
   styles: [`
     .headlines {
       display: flex;

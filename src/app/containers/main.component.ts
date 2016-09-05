@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { HeadlinesComponent } from './headlines.component';
 
 @Component({
   selector: 'main-container',
-  directives: [
-    HeadlinesComponent
-  ],
   template: `
     <div class="main-container">
       <main class="main">
@@ -14,4 +10,4 @@ import { HeadlinesComponent } from './headlines.component';
     </div>
   `
 })
-export class Main {}
+export class MainComponent {}

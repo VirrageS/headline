@@ -1,10 +1,8 @@
-import {
-  inject,
-  async,
-  addProviders
-} from '@angular/core/testing';
+import { inject, async, TestBed } from '@angular/core/testing';
+import { BrowserModule  } from '@angular/platform-browser';
 import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+
 import { ApiService } from './api.service';
 import { HeadlineService } from './headline.service';
 
@@ -13,17 +11,21 @@ describe('HeadlineService', () => {
   let headlineSerivce: HeadlineService;
   let mockbackend: MockBackend;
 
-  beforeEach(() => addProviders([
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: (backend, options) => new Http(backend, options),
-      deps: [MockBackend, BaseRequestOptions]
-    },
-    ApiService,
-    HeadlineService
-  ]))
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend, options) => new Http(backend, options),
+          deps: [MockBackend, BaseRequestOptions]
+        },
+        ApiService,
+        HeadlineService
+      ]
+    })
+  })
 
   beforeEach(inject([HeadlineService, MockBackend], (service, mock) => {
     headlineSerivce = service;

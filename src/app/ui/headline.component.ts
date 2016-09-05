@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Headline, HeadlineService } from '../shared';
 import * as _ from 'lodash';
 
@@ -18,7 +12,7 @@ export class HeadlineComponent implements OnInit {
 
   constructor(private _headlineService: HeadlineService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._fetch()
   }
 

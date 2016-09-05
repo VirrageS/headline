@@ -1,17 +1,13 @@
 /// <reference path="../../../typings/globals/jasmine/index.d.ts" />
 
-import { provide, Component } from '@angular/core';
-import {
-  async,
-  TestBed,
-  ComponentFixture,
-  TestComponentBuilder
-} from '@angular/core/testing';
+import { Component, NgModule } from '@angular/core';
+import { BrowserModule  } from '@angular/platform-browser';
+import { async, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 import { HeadlineComponent } from './headline.component';
 import { HeadlineService, ApiService, Headline } from '../shared';
-import { Observable } from 'rxjs/Rx';
 
 
 let items = [
@@ -34,29 +30,27 @@ class MockHeadlineService extends HeadlineService {
 
 @Component({
   selector: 'headlines-container-test',
-  directives: [
-    HeadlineComponent
-  ],
   template: '<headline [headline]="headline"></headline>'
 })
 class TestComponent {
   headline: Headline = new Headline("Github", "/github")
 }
 
-
 describe('HeadlineComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent
-      ],
       imports: [
-        HttpModule
+        HttpModule,
+        BrowserModule
+      ],
+      declarations: [
+        TestComponent,
+        HeadlineComponent
       ],
       providers: [
         HeadlineService,
         ApiService,
-        provide(HeadlineService, {useClass: MockHeadlineService})
+        { provide: HeadlineService, useClass: MockHeadlineService }
       ]
     })
 

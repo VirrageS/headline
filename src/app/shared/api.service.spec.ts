@@ -1,10 +1,7 @@
-import {
-  inject,
-  async,
-  addProviders
-} from '@angular/core/testing';
+import { inject, async, TestBed } from '@angular/core/testing';
 import { BaseRequestOptions, Http, Response, ResponseOptions } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
+
 import { ApiService } from './api.service';
 
 
@@ -12,16 +9,20 @@ describe('ApiSerivce', () => {
   let apiSerivce: ApiService;
   let mockbackend: MockBackend;
 
-  beforeEach(() => addProviders([
-    BaseRequestOptions,
-    MockBackend,
-    {
-      provide: Http,
-      useFactory: (backend, options) => new Http(backend, options),
-      deps: [MockBackend, BaseRequestOptions]
-    },
-    ApiService
-  ]))
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        BaseRequestOptions,
+        MockBackend,
+        {
+          provide: Http,
+          useFactory: (backend, options) => new Http(backend, options),
+          deps: [MockBackend, BaseRequestOptions]
+        },
+        ApiService
+      ]
+    })
+  })
 
   beforeEach(inject([ApiService, MockBackend], (service, mock) => {
     apiSerivce = service;

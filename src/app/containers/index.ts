@@ -1,2 +1,2 @@
-export { Main } from './main';
+export { MainComponent } from './main.component';
 export { HeadlinesComponent } from './headlines.component';
