@@ -1,6 +1,6 @@
 # headline
 
-Frontend for Headline website
+Frontend for Headline website. Backend can be found at [headline-go](https://github.com/VirrageS/headline-go).
 
 
 ## Getting started
